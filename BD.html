@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Menjodohkan Bangun Datar</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 20px;
+  }
+  h2 {
+    margin-bottom: 20px;
+  }
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 80px;
+    position: relative;
+  }
+  .box {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  .item {
+    width: 120px;
+    height: 120px;
+    border: 2px solid #333;
+    position: relative;
+    background: #f9f9f9;
+    cursor: pointer;
+  }
+  .item span {
+    position: absolute;
+    top: 2px;
+    left: 5px;
+    font-weight: bold;
+  }
+  svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+  }
+  #feedback {
+    margin-top: 20px;
+    font-weight: bold;
+  }
+  button {
+    margin: 15px;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+  <h2>Jodohkan gambar bangun datar berikut dengan nama yang sesuai !</h2>
+  <div class="container">
+    <!-- Kolom kiri (gambar) -->
+    <div class="box" id="leftBox">
+      <div class="item" data-id="1"><span>1</span>
+        <svg width="100%" height="100%">
+          <rect x="20" y="40" width="80" height="40" fill="lightblue" stroke="black"/>
+        </svg>
+      </div>
+      <div class="item" data-id="2"><span>2</span>
+        <svg width="100%" height="100%">
+          <polygon points="60,20 20,90 100,90" fill="lightgreen" stroke="black"/>
+        </svg>
+      </div>
+      <div class="item" data-id="3"><span>3</span>
+        <svg width="100%" height="100%">
+          <polygon points="30,40 90,40 70,80 50,80" fill="lightpink" stroke="black"/>
+        </svg>
+      </div>
+      <div class="item" data-id="4"><span>4</span>
+        <svg width="100%" height="100%">
+          <polygon points="60,20 90,60 60,100 30,60" fill="khaki" stroke="black"/>
+        </svg>
+      </div>
+      <div class="item" data-id="5"><span>5</span>
+        <svg width="100%" height="100%">
+          <circle cx="60" cy="60" r="35" fill="lightcoral" stroke="black"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Kolom kanan (jawaban) -->
+    <div class="box" id="rightBox">
+      <div class="item" data-id="a"><span>a</span>Segitiga</div>
+      <div class="item" data-id="b"><span>b</span>Trapesium</div>
+      <div class="item" data-id="c"><span>c</span>Belah ketupat</div>
+      <div class="item" data-id="d"><span>d</span>Lingkaran</div>
+      <div class="item" data-id="e"><span>e</span>Persegi panjang</div>
+    </div>
+
+    <!-- SVG garis -->
+    <svg id="lines" width="100%" height="100%"></svg>
+  </div>
+
+  <div>
+    <button onclick="resetAll()">Reset</button>
+    <button onclick="checkAnswers()">Periksa Jawaban</button>
+  </div>
+  <div id="feedback"></div>
+
+<script>
+let selectedLeft = null;
+let connections = [];
+const svg = document.getElementById("lines");
+
+// jawaban benar
+const correctAnswers = {
+  1: "e",
+  2: "a",
+  3: "b",
+  4: "c",
+  5: "d"
+};
+
+// pilih item
+document.querySelectorAll("#leftBox .item").forEach(item=>{
+  item.addEventListener("click", ()=>{
+    selectedLeft = item;
+  });
+});
+
+document.querySelectorAll("#rightBox .item").forEach(item=>{
+  item.addEventListener("click", ()=>{
+    if(selectedLeft){
+      connectItems(selectedLeft, item);
+      selectedLeft = null;
+    }
+  });
+});
+
+function connectItems(leftEl, rightEl){
+  const leftBox = leftEl.getBoundingClientRect();
+  const rightBox = rightEl.getBoundingClientRect();
+  const container = document.querySelector(".container").getBoundingClientRect();
+
+  // titik kanan kotak kiri
+  const startX = leftBox.right - container.left;
+  const startY = leftBox.top + leftBox.height/2 - container.top;
+
+  // titik kiri kotak kanan
+  const endX = rightBox.left - container.left;
+  const endY = rightBox.top + rightBox.height/2 - container.top;
+
+  // buat garis melengkung
+  const path = document.createElementNS("http://www.w3.org/2000/svg","path");
+  const color = ["red","blue","green","orange","purple"][connections.length % 5];
+  path.setAttribute("d", `M ${startX},${startY} C ${(startX+endX)/2},${startY} ${(startX+endX)/2},${endY} ${endX},${endY}`);
+  path.setAttribute("stroke", color);
+  path.setAttribute("fill","none");
+  path.setAttribute("stroke-width","2");
+  svg.appendChild(path);
+
+  connections.push({left:leftEl.dataset.id, right:rightEl.dataset.id});
+}
+
+// reset
+function resetAll(){
+  connections = [];
+  svg.innerHTML = "";
+  document.getElementById("feedback").textContent="";
+}
+
+// periksa jawaban
+function checkAnswers(){
+  let benar = true;
+  for(let key in correctAnswers){
+    let match = connections.find(c=>c.left==key);
+    if(!match || match.right!==correctAnswers[key]){
+      benar = false;
+      break;
+    }
+  }
+  if(benar){
+    document.getElementById("feedback").textContent="Selamat, jawaban Anda benar";
+    document.getElementById("feedback").style.color="green";
+  }else{
+    document.getElementById("feedback").textContent="Jawaban Anda salah, silahkan coba lagi.";
+    document.getElementById("feedback").style.color="red";
+  }
+}
+</script>
+</body>
+</html>
