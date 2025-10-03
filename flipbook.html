@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modul Bilangan Berpangkat</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+  <style>
+    /* Styling Dasar dan Layout */
+    body { margin:0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:#e0f7fa; }
+    .swiper { width: 100%; height: 100vh; }
+    .swiper-slide {
+      background: #ffffff;
+      padding: 30px; /* Padding lebih besar */
+      box-sizing: border-box;
+      overflow-y: auto;
+      line-height: 1.5; /* Line height lebih nyaman dibaca */
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Konten di tengah slide */
+      text-align: center; /* Teks default di tengah */
+    }
+
+    /* Judul dan Subjudul */
+    h1, h2, h3 { color: #00796b; margin-top: 0; }
+    h1 { font-size: 2.5em; margin-bottom: 20px; }
+    h2 { font-size: 1.8em; border-bottom: 2px solid #b2dfdb; padding-bottom: 5px; margin-bottom: 20px; width: 80%; }
+    h3 { font-size: 1.4em; color: #004d40; margin-top: 25px; }
+
+    /* Paragraf dan Teks */
+    p { text-align: justify; max-width: 90%; margin: 10px auto; color: #333; }
+    .formula {
+        text-align:center;
+        font-size: 1.2em;
+        font-weight: bold;
+        color: #00796b;
+        margin: 20px 0;
+    }
+    .contoh {
+        text-align: center;
+        font-style: italic;
+        margin-top: 15px;
+    }
+
+    /* Gambar Sampul */
+    img.cover {
+      display:block;
+      margin: auto;
+      max-width:90%;
+      height: auto;
+      border-radius:15px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+    .cover-slide {
+        justify-content: center; /* Rata tengah vertikal untuk sampul */
+    }
+
+    /* Daftar (Latihan Soal dan Sifat) */
+    ol, ul {
+        max-width: 80%;
+        margin: 20px auto;
+        padding-left: 20px;
+        text-align: left; /* Teks dalam daftar rata kiri */
+        list-style-position: outside;
+    }
+    li {
+        margin-bottom: 10px;
+    }
+
+    /* Swiper Navigasi dan Pagination */
+    .swiper-button-next, .swiper-button-prev {
+        color: #00796b !important;
+    }
+    .swiper-pagination-bullet-active {
+        background: #00796b !important;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="swiper">
+  <div class="swiper-wrapper">
+
+    <div class="swiper-slide cover-slide">
+      <img class="cover" src="https://raw.githubusercontent.com/fariecha29/Mediamatematika/main/sampul.png.jpeg" alt="Cover Modul Bilangan Berpangkat">
+      </div>
+
+    <div class="swiper-slide">
+      <h2>A. Pengertian Bilangan Berpangkat</h2>
+      <p>Bilangan berpangkat adalah hasil perkalian berulang dari suatu bilangan dengan dirinya sendiri.</p>
+      <p>Jika <i>a</i> bilangan real dan <i>n</i> bilangan bulat positif, maka:</p>
+      <p class="formula"><b>a<sup>n</sup> = a × a × ... × a (n kali)</b></p>
+      <p class="contoh"><b>Contoh:</b> 2<sup>3</sup> = 2 × 2 × 2 = 8</p>
+      <h3>Latihan Soal</h3>
+      <ol>
+        <li>Hitung nilai $2^5$</li>
+        <li>Tentukan hasil $3^4$</li>
+        <li>Nilai dari $10^3$</li>
+        <li>Tentukan hasil $7^2$</li>
+        <li>Hitung $2^3 + 4^2$</li>
+        <li>Tentukan nilai $6^2 - 2^3$</li>
+        <li>Jika $a = 3$, maka $a^4 = \dots$</li>
+        <li>Sebuah sel membelah diri setiap 2 jam. Jika awalnya 1 sel, berapa jumlah setelah 8 jam?</li>
+        <li>Populasi hewan bertambah 3 kali lipat setiap tahun. Jika awalnya 5 ekor, berapa banyak setelah 3 tahun?</li>
+        <li>Sebuah kotak memiliki luas $5^2$. Panjang sisinya?</li>
+      </ol>
+    </div>
+
+    <div class="swiper-slide">
+      <h2>B. Sifat Bilangan Berpangkat</h2>
+      <ul>
+        <li>$a^m \times a^n = a^{m+n}$</li>
+        <li>$a^m \div a^n = a^{m-n}$</li>
+        <li>$(a^m)^n = a^{mn}$</li>
+        <li>$(ab)^n = a^n \times b^n$</li>
+        <li>$(a/b)^n = a^n/b^n$</li>
+      </ul>
+      <h3>Latihan Soal</h3>
+      <ol>
+        <li>Sederhanakan $2^3 \times 2^4$</li>
+        <li>Hitung $\frac{5^6}{5^2}$</li>
+        <li>Tentukan hasil $(3^2)^3$</li>
+        <li>Hitung $(2 \times 3)^2$</li>
+        <li>Sederhanakan $\frac{7^5 \times 7^2}{7^3}$</li>
+        <li>Tentukan nilai $(4^2)^2 \div 4^3$</li>
+        <li>Jika $x^2 \cdot x^3 = x^m$, tentukan $m$</li>
+        <li>Tentukan nilai $(2^3 \cdot 3^2)^2$</li>
+        <li>Jika $(a^2 \cdot a^3)^2 = a^n$, tentukan $n$</li>
+        <li>Sederhanakan $\frac{5^4 \times 2^3}{10^2}$</li>
+      </ol>
+    </div>
+
+    <div class="swiper-slide">
+      <h2>C. Operasi Bilangan Berpangkat</h2>
+      <p>Operasi bilangan berpangkat meliputi pangkat nol, negatif, perkalian dan pembagian.</p>
+      <h3>Latihan Soal</h3>
+      <ol>
+        <li>Tentukan hasil $5^0$</li>
+        <li>Hitung $2^{-3}$</li>
+        <li>Tentukan hasil $(1/2)^{-4}$</li>
+        <li>Hitung $\frac{3^5}{3^5}$</li>
+        <li>Sederhanakan $2^4 \times 2^{-2}$</li>
+        <li>Tentukan hasil $\frac{6^3}{6^{-1}}$</li>
+        <li>Sederhanakan $(5^{-2})^{-3}$</li>
+        <li>Tentukan nilai $4^{-1} + 2^{-2}$</li>
+        <li>Jika $a^{-3} = 1/8$, tentukan $a$</li>
+        <li>Sederhanakan $\frac{2^{-3} \cdot 4^2}{8}$</li>
+      </ol>
+    </div>
+
+    <div class="swiper-slide">
+      <h2>D. Bilangan Berpangkat Tak Sebenarnya</h2>
+      <p>Pangkat tak sebenarnya berupa pecahan, desimal, atau akar.</p>
+      <h3>Latihan Soal</h3>
+      <ol>
+        <li>Nyatakan $\sqrt{16}$ dalam bentuk pangkat</li>
+        <li>Hitung $8^{1/3}$</li>
+        <li>Tentukan nilai $27^{2/3}$</li>
+        <li>Tentukan hasil $81^{1/2}$</li>
+        <li>Hitung $125^{2/3}$</li>
+        <li>Tentukan hasil $16^{3/4}$</li>
+        <li>Nyatakan $\sqrt[4]{81}$ dalam bentuk pangkat</li>
+        <li>Tentukan nilai $9^{1.5}$</li>
+        <li>Hitung $\frac{64^{2/3}}{4}$</li>
+        <li>Tentukan hasil $(27^{1/3})^4$</li>
+      </ol>
+    </div>
+
+    <div class="swiper-slide">
+      <h2>E. Latihan Akhir Materi</h2>
+      <h3>Pilihan Ganda</h3>
+      <p>25 soal pilihan ganda...</p>
+      <h3>Isian</h3>
+      <p>10 soal isian...</p>
+    </div>
+
+  </div>
+  <div class="swiper-pagination"></div>
+  <div class="swiper-button-next"></div>
+  <div class="swiper-button-prev"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<script>
+  var swiper = new Swiper('.swiper', {
+    effect: 'flip',
+    grabCursor: true,
+    pagination: {
+      el: '.swiper-pagination',
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+</script>
+
+</body>
+</html>
